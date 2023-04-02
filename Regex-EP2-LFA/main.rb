@@ -12,7 +12,7 @@ $text_example = gets
 
 $action_regex = Regexp.new '(ir)|([a-zA-Z]+)(?:ar|er|ir)'
 $pessoa_regex = Regexp.new '[A-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ][a-záàâãéèêíïóôõöúçñ]+'
-$horario_regex = Regexp.new '(([0-9]?[0-9](((\:| )[0-9]{2})| [a-z]+))|[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas|hora)?)'
+$horario_regex = Regexp.new '(([0-9]?[0-9](((\:| )[0-9]{2})| *[a-z]+))|[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas|hora)?)'
 $date_regex = Regexp.new '([0-9]{2}(( de [A-Za-z][a-z]+( de [0-9]{4})?)|(\/[0-9]{2}(\/[0-9]{4})?))|antes de ontem|anteontem|ontem|hoje|amanhã|depois de amanhã)'
 $tag_regex = Regexp.new '\#[aA-zZ]+'
 
