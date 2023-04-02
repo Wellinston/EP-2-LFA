@@ -64,12 +64,12 @@ puts("Tag: " + _tag)
 
 ### Horário
 <pre>
-/(([0-9]?[0-9](((\:| )[0-9]{2})| [a-z]+))|[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas|hora)?)/
+/(([0-9]?[0-9](((\:| )[0-9]{2})| *[a-z]+))|[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas|hora)?)/
 </pre>
 
 |Cadeia de Caracteres|Descrição|
 |:----:|----|
-|([0-9]?[0-9](((\:\| )[0-9]{2})\| [a-z]+))|Reconhece padrões de tempo no formato hh:mm ou hh mm. Os dois primeiros dígitos podem ser opcionais, permitindo que a hora seja reconhecida em formatos como "8:30" ou "08:30". A parte do meio da regex, ((\:\| )[0-9]{2})\| [a-z]+, reconhece o separador de hora ":" ou " " e os dois últimos dígitos que representam os minutos. Alternativamente, se em vez dos minutos vier uma palavra, como "manhã" ou "tarde", a regex reconhece esses padrões de hora.|
+|([0-9]?[0-9](((\:\| )[0-9]{2})\| \*[a-z]+))|Reconhece padrões de tempo no formato hh:mm ou hh mm. Os dois primeiros dígitos podem ser opcionais, permitindo que a hora seja reconhecida em formatos como "8:30" ou "08:30". A parte do meio da regex, ((\:\| )[0-9]{2})\| [a-z]+, reconhece o separador de hora ":" ou " " e os dois últimos dígitos que representam os minutos. Alternativamente, se em vez dos minutos vier uma palavra, como "manhã" ou "tarde", a regex reconhece esses padrões de hora.|
 |[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas\|hora)?|Reconhece padrões de hora como "duas horas", "três horas da tarde", "meia-noite", etc. Ela reconhece duas letras minúsculas que representam o horário, seguidas de um espaço e depois dois dígitos que representam a hora. A parte final, (horas\|hora)?, é opcional e reconhece a palavra "hora" ou "horas" se estiver presente.|
 
 #### Testes
