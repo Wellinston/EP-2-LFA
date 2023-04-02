@@ -12,8 +12,10 @@ Ao rodar nosso código em cima dessa frase, teremos separados os seguintes bloco
  - Pessoa: João
  - Ação: Agendar
  - Tag: #trabalho
+
 ## Modelagem
 Como ponto de partida para resolução desse problema, quebramos o mesmo em partes, criando regex separadas para reconhecer cada um dos itens.
+
 ### Data
 <pre>
 /(([0-2][0-9]|3[0-1])(( de [A-Za-z][a-z]+( de [0-9]{4})?)|(\/[0-9]{2}(\/[0-9]{4})?))|antes de ontem|anteontem|ontem|hoje|amanhã|depois de amanhã)/
@@ -21,12 +23,43 @@ Como ponto de partida para resolução desse problema, quebramos o mesmo em part
 
 |Cadeia de Caracteres|Descrição|
 |:----:|----|
-|([0-2][0-9]\|3[0-1])|Começa buscando por um dia do mês, que pode ser de 01 a 31. A primeira parte da expressão, "[0-2][0-9]", reconhece qualquer número de 01 a 29, enquanto que a segunda parte, "3[0-1]", reconhece o número 30 ou 31, que são os dias possíveis para os meses com 30 ou 31 dias, respectivamente;|
+|([0-2][0-9]\|3[0-1])|Começa buscando por um dia do mês, que pode ser de 01 a 31. A primeira parte da expressão, "[0-2][0-9]", reconhece qualquer número de 01 a 29, enquanto que a segunda parte, "3[0-1]", reconhece o número 30 ou 31, que são os dias possíveis para os meses com 30 ou 31 dias, respectivamente|
 |(( de [A-Za-z][a-z]+( de [0-9]{4})?)\|(/[0-9]{2}(/[0-9]{4})?))|Busca por um espaço seguido da palavra "de", seguida de uma palavra que representa o mês (com a primeira letra maiúscula e as demais minúsculas), que pode ser seguida de mais um espaço e da palavra "de" seguida de um número com 4 dígitos, que representa o ano. Alternativamente, a expressão reconhece a mesma informação no formato de data separada por barras, com o dia em primeiro lugar, depois o mês e por último o ano. Como no caso anterior, todo esse trecho entre parênteses é opcional|
 |(\|antes de ontem\|anteontem\|ontem\|hoje\|amanhã\|depois de amanhã)|Busca por algumas palavras chave que representam datas específicas: "antes de ontem", "anteontem", "ontem", "hoje", "amanhã" e "depois de amanhã".|
 
 #### Testes
 ![image](https://user-images.githubusercontent.com/76501071/229380056-e2f3de28-60ee-420e-acb4-e9da2f7d46df.png)
+
+#### Script de Código
+Para a parte de datas, utilizamos uma parte do código para focar em datas escritas na forma de "amanhã", "ontem", "hoje" e etc. Com o intuito de manter uma padronização na demonstração.
+
+Seguindo o código abaixo:
+
+```ruby
+if 'AMANHÃ' == _date.upcase
+  hoje = Date.today
+  data = hoje.next_day.strftime('%d/%m/%Y')
+elsif 'DEPOIS DE AMANHÃ' == _date.upcase
+  hoje = Date.today
+  data = hoje.next_day.next_day.strftime('%d/%m/%Y')
+elsif 'HOJE' == _date.upcase
+  data = Date.today.strftime('%d/%m/%Y')
+elsif 'ONTEM' == _date.upcase
+  hoje = Date.today
+  data = hoje.prev_day.strftime('%d/%m/%Y')
+elsif 'ANTEONTEM' == _date.upcase or 'ANTES DE ONTEM' == _date.upcase
+  hoje = Date.today
+  data = hoje.prev_day.prev_day.strftime('%d/%m/%Y')
+else
+  data = _date
+end
+
+puts("Data: " + data)
+puts("Horário: " + _horario)
+puts("Pessoa: " + _pessoa)
+puts("Ação: " + _action)
+puts("Tag: " + _tag)
+```
 
 
 ### Horário
