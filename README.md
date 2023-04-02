@@ -25,6 +25,10 @@ Como ponto de partida para resolução desse problema, quebramos o mesmo em part
 |(( de [A-Za-z][a-z]+( de [0-9]{4})?)\|(/[0-9]{2}(/[0-9]{4})?))|Busca por um espaço seguido da palavra "de", seguida de uma palavra que representa o mês (com a primeira letra maiúscula e as demais minúsculas), que pode ser seguida de mais um espaço e da palavra "de" seguida de um número com 4 dígitos, que representa o ano. Alternativamente, a expressão reconhece a mesma informação no formato de data separada por barras, com o dia em primeiro lugar, depois o mês e por último o ano. Como no caso anterior, todo esse trecho entre parênteses é opcional|
 |(\|antes de ontem\|anteontem\|ontem\|hoje\|amanhã\|depois de amanhã)|Busca por algumas palavras chave que representam datas específicas: "antes de ontem", "anteontem", "ontem", "hoje", "amanhã" e "depois de amanhã".|
 
+#### Testes
+![image](https://user-images.githubusercontent.com/76501071/229380056-e2f3de28-60ee-420e-acb4-e9da2f7d46df.png)
+
+
 ### Horário
 <pre>
 /(([0-9]?[0-9](((\:| )[0-9]{2})| [a-z]+))|[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas|hora)?)/
@@ -35,6 +39,10 @@ Como ponto de partida para resolução desse problema, quebramos o mesmo em part
 |([0-9]?[0-9](((\:\| )[0-9]{2})\| [a-z]+))|Reconhece padrões de tempo no formato hh:mm ou hh mm. Os dois primeiros dígitos podem ser opcionais, permitindo que a hora seja reconhecida em formatos como "8:30" ou "08:30". A parte do meio da regex, ((\:\| )[0-9]{2})\| [a-z]+, reconhece o separador de hora ":" ou " " e os dois últimos dígitos que representam os minutos. Alternativamente, se em vez dos minutos vier uma palavra, como "manhã" ou "tarde", a regex reconhece esses padrões de hora.|
 |[a-záàâãéèêíïóôõöúçñ]{2} [0-9]?[0-9](horas\|hora)?|Reconhece padrões de hora como "duas horas", "três horas da tarde", "meia-noite", etc. Ela reconhece duas letras minúsculas que representam o horário, seguidas de um espaço e depois dois dígitos que representam a hora. A parte final, (horas\|hora)?, é opcional e reconhece a palavra "hora" ou "horas" se estiver presente.|
 
+#### Testes
+![image](https://user-images.githubusercontent.com/76501071/229380200-e2351017-43f0-47d7-a273-6ec942b37ef8.png)
+
+
 ### Pessoa
 <pre>
 /[A-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ][a-záàâãéèêíïóôõöúçñ]+/
@@ -44,6 +52,10 @@ Como ponto de partida para resolução desse problema, quebramos o mesmo em part
 |:----:|----|
 |[A-ZZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]|Define um conjunto de caracteres que deve aparecer no início da palavra. Nesse caso, são letras maiúsculas (A-Z) e algumas letras acentuadas utilizadas em português|
 |[a-zzáàâãéèêíïóôõöúçñ]+|Define um conjunto de caracteres que deve seguir imediatamente o conjunto anterior. Nesse caso, são letras minúsculas (a-z) e algumas letras acentuadas utilizadas em português.|
+
+#### Testes
+![image](https://user-images.githubusercontent.com/76501071/229380263-0888756d-e7e5-485c-a99e-250cceaec1c9.png)
+
 
 ### Ação
 Para esse caso em específico, focamos em retirar das frases os verbos em sua forma natural (no infinitivo)
@@ -57,7 +69,11 @@ Para esse caso em específico, focamos em retirar das frases os verbos em sua fo
 |([a-zA-Z]+)|Grupo de captura que reconhece uma ou mais letras maiúsculas ou minúsculas.|
 |(?:ar\|er\|ir)|Grupo que reconhece os sufixos "ar", "er" ou "ir" dos verbos em português.|
 
-Essa expressão regular reconhece qualquer palavra que comece com uma letra maiúscula ou minúscula, seguida por um dos sufixos "ar", "er" ou "ir", ou a palavra "ir". 
+Essa expressão regular reconhece qualquer palavra que comece com uma letra maiúscula ou minúscula, seguida por um dos sufixos "ar", "er" ou "ir", ou a palavra "ir".
+
+#### Testes
+![image](https://user-images.githubusercontent.com/76501071/229380342-91205a17-0a70-4e59-a637-2be7d5923d2c.png)
+
 
 ### Tag
 <pre>
@@ -70,3 +86,7 @@ Essa expressão regular reconhece qualquer palavra que comece com uma letra mai�
 |[aA-zZ]|Conjunto de caracteres que correspondem a letras maiúsculas e minúsculas.|
 
 Esta expressão regular corresponde a qualquer sequência de caracteres que comece com "#" e contenha uma ou mais letras de a a z (tanto maiúsculas quanto minúsculas) após o "#" inicial.
+
+#### Testes
+![image](https://user-images.githubusercontent.com/76501071/229380393-20433068-10bf-42af-af20-c8748ee9de8f.png)
+
